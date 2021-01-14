@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User submited UFOs</title>
+</head>
+<body>
+    <%- include('common/header'); -%>
+    <table id="user-data-table">
+        <tr>
+            <th>datetime</th>
+            <th>city</th>
+            <th>state</th>
+            <th>country</th>
+            <th>shape</th>
+            <th>duration</th>
+            <th>comments</th>
+            <th>dateposted</th>
+            <th>latitude</th>
+            <th>longitude</th>
+        </tr>
+    </table>
+    <script>
+        function deleteSighting(id){
+            window.location.href='/user-ufos-delete/${id}';
+        }
+
+        const data=<%- data %>;
+        data.forEach(element => {
+            document.getElementById('user-data-table').insertAdjacentHTML('beforeend',
+            `
+                <tr>
+                    <td>${element['datetime']}</td>
+                    <td>${element['city']}</td>
+                    <td>${element['state']}</td>
+                    <td>${element['country']}</td>
+                    <td>${element['shape']}</td>
+                    <td>${element['durationhoursmin']} hours</td>
+                    <td>${element['comments']}</td>
+                    <td>${element['dateposted']}</td>
+                    <td>${element['latitude']}</td>
+                    <td>${element['longitude']}</td>
+                    <td><button type="button" id="button-${element['_id']}" onclick=window.location.href='/user-ufos-delete/${element['_id']}'>Delete</button><br><button type="button" id="button-${element['_id']}-update" onclick="window.location.href='/user-ufos-update/${element['_id']}'">Update</button></td>
+                </tr>`
+            )
+        });
+    </script>
+</body>
+</html>

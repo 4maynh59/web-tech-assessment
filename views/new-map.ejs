@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaUOwxOXg1zrhKWZg1KYWvcq0zrYT2-OQ"></script>
+    <link href="/css/ufo-map.css" rel="stylesheet" type="text/css">
+    <script>
+      //map initialisation script, markers added here
+        function initialize() {
+          var mapProp = {
+            center:new google.maps.LatLng(<%= lat %>,<%= long %>),
+            zoom:2,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+          };
+
+          var map=new google.maps.Map(document.getElementById("map"), mapProp);
+
+          locationData=<%- data -%>;
+          //loop sets markers for each sightings
+          locationData.forEach(element => {
+              new google.maps.Marker({position:{lat:element['latitude'],lng:element['longitude']}, map:map});
+          });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script> 
+</head>
+<body>
+    <%- include('common/header'); -%>
+    <div id="map"></div>
+</body>
+</html>

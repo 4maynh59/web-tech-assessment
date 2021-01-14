@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find UFOS here</title>
+    <link href="/css/ufo-form.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <%- include('common/header'); -%>
+    <h1>find ufos here</h1>
+    <label for="lat">Lattitude</label>
+    <input type="number" id="lat" min="-90" max="90">
+    <label for="long">Longitude</label>
+    <input type="number" id="long" min="-180" max="180">
+    <label for="yearSeen">Year Sighted</label>
+    <input type="text" id="year-box" class="fine-controll-box" value="2013">
+    <input type="range" min="1968" max="2013" value="2013" class="slider" id="year-slider">
+    <label for="range">Distance from origin (KM)</label>
+    <input type="submit" value="submit" id="submit">
+    <script>
+        function updateYearBox(){
+            document.getElementById("year-box").value=document.getElementById("year-slider").value;
+        }
+        function updateYearSlider(){
+            document.getElementById("year-slider").value=document.getElementById("year-box").value;
+        }
+
+        function cheackSubmitdata(){
+            if(document.getElementById("lat").value != "" && document.getElementById("long").value != ""){
+                window.location.href =`/ufo-finder-form-data/${document.getElementById("lat").value}/${document.getElementById("long").value}/${document.getElementById("year-box").value}`
+            }
+            else{
+
+            }
+        }
+        document.getElementById("year-box").addEventListener("change",updateYearSlider);
+        document.getElementById("year-slider").addEventListener("change",updateYearBox);
+        document.getElementById("submit").addEventListener("click",cheackSubmitdata);
+    </script>
+</body>
+</html>

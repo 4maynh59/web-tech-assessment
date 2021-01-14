@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmap</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaUOwxOXg1zrhKWZg1KYWvcq0zrYT2-OQ&callback=initMap"></script>
+    <style type="text/css">
+        /* Set the size of the div element that contains the map */
+        #map {
+          height: 400px;
+          /* The height is 400 pixels */
+          width: 100%;
+          /* The width is the width of the web page */
+        }
+    </style>
+    <link href="css/ufo-map.css" rel="stylesheet" type="text/css">
+    <script>
+      function initialize() {
+        var mapProp = {
+          center:new google.maps.LatLng(50.90395,-1.40428),
+          zoom:5,
+          mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        var ufoMap=new google.maps.Map(document.getElementById("map"), mapProp);
+        window.ufoMap=ufoMap;
+      }
+      console.log('working')
+      //google.maps.event.addDomListener(window, 'load', initialize);
+      
+    </script> 
+</head>
+<body>
+    <%- include('common/header'); -%>
+    <%= ufos[0] %> 
+    <h2>settings</h2>
+    <form action="post">
+      <label for="lat">lattitude</label>
+      <input type="text" id="lat">
+      <label for="long">Longitude</label>
+      <input type="text" id="long">
+      <label for="year-seen">Year Sighted</label>
+      <input type="range" min="1968" max="2013" value="2013" class="slider" id="year-seen">
+      <label for="range">Distance from origin (KM)</label>
+      <input type="range" min="1" max="100" value="50" class="slider" id="range">
+      <input type="submit" value="Submit">
+    </form>
+    <div id="map"></div>
+    <script>
+        const marker = new google.maps.Marker({
+        position: { lat: 50.90395, lng: -1.40428 },
+        map: ufoMap,
+        });
+        //db.sightings.find({latitude: {$gt: 50, $lt:50}, longitude: {$gt: 50, $lt:50}})
+    </script>
+</body>
+</html>

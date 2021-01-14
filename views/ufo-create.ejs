@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit UFO sighting</title>
+    <link href="/css/ufo-form.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <%- include('common/header'); -%>
+    <label for="datetime">datetime</label>
+    <input type="text" id="datetime">
+    <label for="city">City</label>
+    <input type="text" id="city">
+    <label for="state">State</label>
+    <input type="text" id="state">
+    <label for="country">country</label>
+    <input type="text" id="country">
+    <label for="shape">shape</label>
+    <input type="text" id="shape">
+    <label for="durationhoursmin">Duration of sighting in hours</label>
+    <input type="number" step="0.5" id="durationhoursmin">
+    <label for="comments">comment</label>
+    <input type="text" id="comments">
+    <label for="latitude">latitude</label>
+    <input type="number" id="latitude">
+    <label for="longitude">longitude</label>
+    <input type="number" id="longitude">
+    <button type="submit" id="submit">submit</button>
+    <script>
+        function createSighting(){
+            window.location.href =`/user-ufos-create/${document.getElementById('datetime').value}/${document.getElementById('city').value}/${document.getElementById('state').value}/${document.getElementById('country').value}/${document.getElementById('shape').value}/${document.getElementById('durationhoursmin').value}/${document.getElementById('comments').value}/${document.getElementById('latitude').value}/${document.getElementById('longitude').value}`
+        }
+        document.getElementById('submit').addEventListener('click',createSighting);
+    </script>
+</body>
+</html>

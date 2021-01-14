@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <style type="text/css">
+        /* Set the size of the div element that contains the map */
+        #map {
+          height: 400px;
+          /* The height is 400 pixels */
+          width: 100%;
+          /* The width is the width of the web page */
+        }
+    </style>
+</head>
+<body>
+    <%- include('common/header'); -%>
+    <h1>What is this?</h1>
+    <p>This is a prototype application to make sense of a dataset. I chose to use this dataset: https://www.kaggle.com/NUFORC/ufo-sightings all fortune and glory goes to them.</p>
+    <h2>How Do I use this?</h2>
+    <p>The main feature of this prototype is the ability to display sightings on a map. The 'Find UFOS near you' option will allow you to input a set of coordinates
+         in lattitude and longitude (e.g southampton would be 50.909698, -1.404351) and a year. This will then gerate a map showing the closest sightings in the dataset for that year.
+    </p>
+    <p>You can submit sightings on the 'UFO sighting submit' page and then view and update then on the 'UFO submitted sightings' page.
+        original planned to include these in the UFO sightings map but due to time constraints I couldn't finish this feature but I may implament it in the future
+    </p>
+</body>
+</html>

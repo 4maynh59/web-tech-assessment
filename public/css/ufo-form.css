@@ -1,0 +1,8 @@
+input{
+    display: block;
+}
+
+.fine-controll-box{
+    display: inline !important;
+    width: 3em;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update sighting</title>
+    <link href="/css/ufo-form.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <%- include('common/header'); -%>
+    <h1>working update</h1>
+    <label for="datetime">datetime</label>
+    <input type="text" id="datetime">
+    <label for="city">City</label>
+    <input type="text" id="city">
+    <label for="state">State</label>
+    <input type="text" id="state">
+    <label for="country">country</label>
+    <input type="text" id="country">
+    <label for="shape">shape</label>
+    <input type="text" id="shape">
+    <label for="durationhoursmin">Duration of sighting in hours</label>
+    <input type="number" step="0.5" id="durationhoursmin" value="0">
+    <label for="comments">comment</label>
+    <input type="text" id="comments">
+    <label for="latitude">latitude</label>
+    <input type="number" id="latitude">
+    <label for="longitude">longitude</label>
+    <input type="number" id="longitude">
+    <button type="submit" id="submit">submit</button>
+    <script>
+        const data=<%- data %>;
+        //fields left empty if data is ""
+        document.getElementById('datetime').value=data['datetime'];
+        document.getElementById('city').value=data['city'];
+        document.getElementById('state').value=data['state'];
+        document.getElementById('country').value=data['country'];
+        document.getElementById('shape').value=data['shape'];
+        document.getElementById('durationhoursmin').value=1;//data['duration (hours/min)'];
+        document.getElementById('comments').value=data['comments'];
+        document.getElementById('latitude').value=data['latitude'];
+        document.getElementById('longitude').value=data['longitude'];
+
+        console.log(document.getElementById('state').value.replaceAll('/',''));
+
+        function updateSighting(){
+
+            // need to remove / from all strings before used in url
+            var datetime = document.getElementById('datetime').value.replaceAll('/','-');
+            var city = document.getElementById('city').value.replaceAll('/','');
+            var state = document.getElementById('state').value.replaceAll('/','');
+            var country = document.getElementById('country').value.replaceAll('/','');
+            var shape = document.getElementById('shape').value.replaceAll('/','');
+            var comment = document.getElementById('comments').value.replaceAll('/','');
+            
+            //need to set empty values to a string or url wont work
+            if (datetime==""){
+                datetime="none";
+            }
+            if (city==""){
+                city="none";
+            }
+            if (state==""){
+                console.log("working")
+                state="none";
+            }
+            if (country==""){
+                country="none";
+            }
+            if (shape==""){
+                shape="none";
+            }
+            if (comment==""){
+                comment="none";
+            }
+
+            window.location.href =`/user-ufos-update-confirm/${datetime}/${city}/${state}/${country}/${shape}/${document.getElementById('durationhoursmin').value}/${comment}/${document.getElementById('latitude').value}/${document.getElementById('longitude').value}/${data['_id']}`
+        }
+
+        document.getElementById('submit').addEventListener('click',updateSighting);
+    </script>
+</body>
+</html>
